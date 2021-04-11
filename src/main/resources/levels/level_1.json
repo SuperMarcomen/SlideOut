@@ -1,0 +1,33 @@
+{
+  "grid_size": 30,
+  "grid": [
+    {
+      "type": "Obstacle",
+      "properties": {
+        "x": 5,
+        "y": 5
+      }
+    },
+    {
+      "type": "Obstacle",
+      "properties": {
+        "x": 5,
+        "y": 11
+      }
+    },
+    {
+      "type": "Obstacle",
+      "properties": {
+        "x": 7,
+        "y": 10
+      }
+    },
+    {
+      "type": "Obstacle",
+      "properties": {
+        "x": 3,
+        "y": 10
+      }
+    }
+  ]
+}
