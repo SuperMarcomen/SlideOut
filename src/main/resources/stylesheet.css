@@ -1,23 +1,78 @@
 #level_selector {
-    -fx-fill: #94e2dd;
+    -fx-fill: #547792;
+}
+
+#level_label {
+    -fx-font-size: 6em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F9FBFB;
+    -fx-font-family: Poppins;
+}
+
+#won_button {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-family: Poppins;
+    -fx-font-size: 3em;
+    -fx-text-fill: #E9E9E9;
+}
+
+#won_button:hover {
+    -fx-background-color: #2b5351;
 }
 
 #grid {
-    -fx-background-color: #6fd8d1;
-    -fx-border-color: #6FD8D1;
+    -fx-border-color: #19486D;
+    -fx-border-width: 5;
+
+    -fx-background-color: #19486D;
 }
 
 #scrollpane {
-    -fx-background-color:transparent;
-}
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-    -fx-background-color :transparent;
-    -fx-border-color :transparent;
-    -fx-background-radius : 2.0em;
+    -fx-background-color: transparent;
 }
 
-.scroll-bar:horizontal .increment-button ,
+#root {
+    -fx-background-color: #19486d;
+}
+
+.label {
+    -fx-font-family: Poppins;
+}
+
+#won_text {
+    -fx-font-size: 6em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+#title {
+    -fx-font-size: 6em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+#subtitle {
+    -fx-font-size: 3em;
+    -fx-text-fill: #E9E9E9;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url('Poppins-Regular.ttf');
+}
+
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 2.0em;
+}
+
+.scroll-bar:horizontal .increment-button,
 .scroll-bar:horizontal .decrement-button {
     -fx-background-color :transparent;
     -fx-background-radius : 0.0em;
@@ -54,16 +109,16 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color : #94e2dd;
-    -fx-background-insets : 2.0, 0.0, 0.0;
-    -fx-background-radius : 2.0em;
+    -fx-background-color: #547792;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
 }
 
 .scroll-bar:horizontal .thumb:hover,
 .scroll-bar:vertical .thumb:hover {
-    -fx-background-color : #afe7e3;
-    -fx-background-insets : 2.0, 0.0, 0.0;
-    -fx-background-radius : 2.0em;
+    -fx-background-color: #6588a5;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 2.0em;
 }
 
 .scroll-bar{
@@ -75,36 +130,4 @@
 
 .scroll-bar:vertical:focused {
     -fx-background-color: transparent;
-}
-.label {
-    -fx-font-family: Poppins;
-}
-
-#level_label {
-    -fx-font-size: 6em;
-    -fx-font-weight: bold;
-    -fx-text-fill: #6FD8D1;
-    -fx-font-family: Poppins;
-}
-
-#title {
-    -fx-font-size: 6em;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1F1F1F;
-}
-
-#subtitle {
-    -fx-font-size: 3em;
-    -fx-text-fill: #1F1F1F;
-}
-
-
-
-@font-face {
-    font-family: Poppins;
-    src: url('Poppins-Regular.ttf');
-}
-
-#root {
-    -fx-background-color: #6FD8D1;
 }

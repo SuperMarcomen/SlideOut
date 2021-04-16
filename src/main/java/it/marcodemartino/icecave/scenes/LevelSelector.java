@@ -1,10 +1,6 @@
 package it.marcodemartino.icecave.scenes;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import it.marcodemartino.icecave.entities.Level;
-import it.marcodemartino.icecave.entities.blocks.Block;
-import it.marcodemartino.icecave.entities.blocks.BlockAdapter;
+import it.marcodemartino.icecave.handlers.LevelHandler;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,38 +14,38 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LevelSelector extends Application {
 
     private final int WIDTH = 900, HEIGHT = 900;
-    private final List<Level> levels;
+    private final LevelHandler levelHandler;
+    private GameLevel gameLevel;
+    private Stage stage;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     public LevelSelector() throws IOException {
-        levels = getLevels();
-        /*List<Block> blocks = new ArrayList<>();
-        blocks.add(new Obstacle(5,5,30));
-        blocks.add(new Obstacle(7,5,30));
-        blocks.add(new Obstacle(8,5,30));
-        blocks.add(new Obstacle(9,5,30));
-        Level level = new Level( 30, blocks);
-        final Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Block.class, new BlockAdapter())
-                .excludeFieldsWithoutExposeAnnotation()
-                .setPrettyPrinting().create();
-        System.out.println(gson.toJson(level));*/
+        levelHandler = new LevelHandler();
     }
 
     @Override
     public void start(Stage stage) {
+        this.stage = stage;
+        createScene();
+        stage.setResizable(false);
+        stage.setTitle("Slide out");
+        stage.show();
+    }
+
+    public void drawWonScreen() {
+        Scene scene = gameLevel.draw();
+        stage.setScene(scene);
+    }
+
+    public void createScene() {
         VBox vBox = new VBox();
         VBox.setMargin(vBox, new Insets(100));
         vBox.setSpacing(5);
@@ -72,22 +68,23 @@ public class LevelSelector extends Application {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
 
-
         grid.setHgap(100);
         grid.setVgap(100);
         grid.setPadding(new Insets(0, 100, 100, 100));
-        for (int i = 0; i < levels.size(); i++) {
+        for (int i = 0; i < levelHandler.getLevels().size(); i++) {
             StackPane stackPane = new StackPane();
-            Label text = new Label(i+1 + "");
+            Label text = new Label(i + 1 + "");
             text.setId("level_label");
 
-            Rectangle rectangle = new Rectangle(WIDTH/5.52, HEIGHT/5.52);
+            Rectangle rectangle = new Rectangle(WIDTH / 5.52, HEIGHT / 5.52);
             rectangle.setId("level_selector");
 
             int finalI = i;
             rectangle.setOnMouseClicked(mouseEvent -> {
-                IceCave iceCave = new IceCave(WIDTH, HEIGHT, levels.get(finalI));
-                iceCave.start(stage);
+                gameLevel = new
+                        GameLevel(WIDTH, HEIGHT, levelHandler.getLevels().get(finalI), this);
+                Scene scene = gameLevel.draw();
+                stage.setScene(scene);
             });
 
             stackPane.getChildren().addAll(rectangle, text);
@@ -100,26 +97,8 @@ public class LevelSelector extends Application {
         scene.getStylesheets().add("stylesheet.css");
 
         stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Slide out");
-        stage.show();
     }
 
-    private List<Level> getLevels() throws IOException {
-        final Gson gson = new GsonBuilder()
-                .registerTypeAdapter(Block.class, new BlockAdapter())
-                .excludeFieldsWithoutExposeAnnotation().create();
 
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/levels")));
-        final List<Level> levels = new ArrayList<>();
-
-        String line = "";
-        while ((line = reader.readLine()) != null) {
-            Level level = gson.fromJson(new InputStreamReader(getClass().getResourceAsStream("/levels/" + line)), Level.class);
-            levels.add(level);
-        }
-
-        return levels;
-    }
 
 }

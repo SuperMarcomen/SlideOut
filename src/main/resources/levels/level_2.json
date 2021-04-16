@@ -11,20 +11,6 @@
     {
       "type": "Obstacle",
       "properties": {
-        "x": 7,
-        "y": 5
-      }
-    },
-    {
-      "type": "Obstacle",
-      "properties": {
-        "x": 8,
-        "y": 5
-      }
-    },
-    {
-      "type": "Obstacle",
-      "properties": {
         "x": 9,
         "y": 5
       }
